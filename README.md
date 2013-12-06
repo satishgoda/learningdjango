@@ -1,0 +1,4 @@
+learningdjango
+==============
+
+Learning Django
