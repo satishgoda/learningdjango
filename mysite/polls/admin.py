@@ -4,7 +4,9 @@ from polls.models import Poll
 # Customize admin UI for models
 
 class PollAdmin(admin.ModelAdmin):
-    fields = ['pub_date', 'question']
+    fieldsets = []
+    fieldsets.append((None, {'fields': ['question']}));
+    fieldsets.append(('Date Information', {'fields': ['pub_date']}));
 
 # Register your models here.
 
