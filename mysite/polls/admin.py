@@ -6,7 +6,7 @@ from polls.models import Poll
 class PollAdmin(admin.ModelAdmin):
     fieldsets = []
     fieldsets.append((None, {'fields': ['question']}));
-    fieldsets.append(('Date Information', {'fields': ['pub_date']}));
+    fieldsets.append(('Date Information', {'fields': ['pub_date'], 'classes': ['collapse']}));
 
 # Register your models here.
 
