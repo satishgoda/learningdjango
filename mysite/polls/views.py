@@ -36,7 +36,7 @@ def results(request, poll_id):
     return HttpResponse(output)
     
 def vote(request, poll_id):
-    return HttpResponse("You are voting on poll {0}.".format(poll_id))
+    return HttpResponse("Note yet implemented")
     
 # https://docs.djangoproject.com/en/1.6/intro/tutorial03/
 # A view is a "type" of Web page in your Django application that generally 
