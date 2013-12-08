@@ -3,12 +3,20 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse
+from django.template import RequestContext, loader
+
 from polls.models import Poll
 
 def index(request):
     latest_polls = Poll.objects.order_by('-pub_date')[:5]
-    output = '<br />'.join(map(lambda poll: poll.question, latest_polls))
-    return HttpResponse(output)
+    
+    template = loader.get_template('polls/index.html')
+    
+    context = RequestContext(request, {
+        'latest_polls': latest_polls,
+    })
+    
+    return HttpResponse(template.render(context))
 
 def detail(request, poll_id):
     output = ""
