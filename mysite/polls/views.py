@@ -1,11 +1,12 @@
 from django.shortcuts import render
-
-# Create your views here.
+from django.http import Http404
 
 from django.http import HttpResponse
 from django.shortcuts import render
 
 from polls.models import Poll
+
+# Create your views here.
 
 def index(request):
     latest_polls = Poll.objects.order_by('-pub_date')[:5]
@@ -13,15 +14,12 @@ def index(request):
     return render(request, 'polls/index.html', context)
 
 def detail(request, poll_id):
-    output = ""
     try:
         poll = Poll.objects.get(pk=poll_id)
-    except Poll.DoesNotExist as e:
-        output = 'ERROR: {0}<br />&nbsp&nbsp&nbsp&nbsp{1} - {2}'.format(e, "Poll.id", poll_id)
-    else:
-        output = "<i>{0})</i> {1}".format(poll_id, poll.question)
-    finally:
-        return HttpResponse(output)
+    except Poll.DoesNotExist:
+        raise Http404
+        
+    return render(request, 'polls/detail.html', {'poll': poll})
 
 def results(request, poll_id):
     results = Poll.objects.filter(pk=poll_id)
