@@ -11,12 +11,30 @@ def index(request):
     return HttpResponse(output)
 
 def detail(request, poll_id):
-    
-    return HttpResponse("You're looking at poll {0}.".format(poll_id))
+    output = ""
+    try:
+        poll = Poll.objects.get(pk=poll_id)
+    except Poll.DoesNotExist as e:
+        output = 'ERROR: {0}<br />&nbsp&nbsp&nbsp&nbsp{1} - {2}'.format(e, "Poll.id", poll_id)
+    else:
+        output = "<i>{0})</i> {1}".format(poll_id, poll.question)
+    finally:
+        return HttpResponse(output)
 
 def results(request, poll_id):
-    return HttpResponse("You are looking at the results of poll {0}.".format(poll_id))
-
+    results = Poll.objects.filter(pk=poll_id)
+    output = ''
+    if not results:
+        output = "The id ({0}) does not exist in the database".format(poll_id)
+    else:
+        poll = results[0]
+        output = "<b>{0}</b><br>\n".format(poll.question)
+        output += "<ul>\n"
+        for choice in poll.choice_set.filter():
+            output += '<li>{0}: {1}</li><br>\n'.format(choice.choice_text, choice.votes)
+        output += "</ul>\n"
+    return HttpResponse(output)
+    
 def vote(request, poll_id):
     return HttpResponse("You are voting on poll {0}.".format(poll_id))
     
