@@ -1,19 +1,23 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.views import generic
+
 from polls.models import Poll, Choice
 
 # Create your views here.
 
-def index(request):
-    latest_polls = Poll.objects.order_by('-pub_date')[:5]
-    context = { 'latest_polls': latest_polls }
-    return render(request, 'polls/index.html', context)
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_polls'
+    
+    def get_queryset(self):
+        """Return the last five published polls"""
+        return Poll.objects.order_by('-pub_date')[:5]
 
-def detail(request, poll_id):
-    poll = get_object_or_404(Poll, pk=poll_id) 
-    context = {'poll': poll}
-    return render(request, 'polls/detail.html', context)
+class DetailView(generic.DetailView):
+    model = Poll
+    template_name = "polls/detail.html"
     
 def vote(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
@@ -31,11 +35,10 @@ def vote(request, poll_id):
         # Back button
         return HttpResponseRedirect(reverse('polls:results', args=(poll.id,)))
 
-def results(request, poll_id):
-    poll = get_object_or_404(Poll, pk=poll_id)
-    context = {'poll': poll}
-    return render(request, 'polls/results.html', context)
-        
+class ResultsView(generic.DetailView):
+    model = Poll
+    template_name = "polls/results.html"
+
 # https://docs.djangoproject.com/en/1.6/intro/tutorial03/
 # A view is a "type" of Web page in your Django application that generally 
 # serves a specific function and has a specific template.
