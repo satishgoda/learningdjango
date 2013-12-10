@@ -14,11 +14,6 @@ def detail(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id) 
     context = {'poll': poll}
     return render(request, 'polls/detail.html', context)
-
-def results(request, poll_id):
-    poll = get_object_or_404(Poll, pk=poll_id)
-    context = {'poll': poll}
-    return render(request, 'polls/results.html', context)
     
 def vote(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
@@ -36,6 +31,11 @@ def vote(request, poll_id):
         # Back button
         return HttpResponseRedirect(reverse('polls:results', args=(poll.id,)))
 
+def results(request, poll_id):
+    poll = get_object_or_404(Poll, pk=poll_id)
+    context = {'poll': poll}
+    return render(request, 'polls/results.html', context)
+        
 # https://docs.djangoproject.com/en/1.6/intro/tutorial03/
 # A view is a "type" of Web page in your Django application that generally 
 # serves a specific function and has a specific template.
