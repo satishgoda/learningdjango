@@ -10,7 +10,9 @@ https://github.com/satishgoda/learningdjango/wiki/Blog
 
 # Status
 
-Dec 17: Started reading https://docs.djangoproject.com/en/1.6/intro/tutorial05
+Dec 18: Started reading https://docs.djangoproject.com/en/1.6/intro/tutorial06
+
+Dec 17: Started and finished https://docs.djangoproject.com/en/1.6/intro/tutorial05
 
 Dec 15 - Finished Javascript tutorial on codeacademy.com
 
