@@ -10,11 +10,11 @@ https://github.com/satishgoda/learningdjango/wiki/Blog
 
 # Status
 
-Dec 10 -
- 
-    Started learning the basics of JavaScript 
-    
-    Started and Finished https://docs.djangoproject.com/en/1.6/intro/tutorial04 (Forms and Generic Views)
+Dec 17: Started reading https://docs.djangoproject.com/en/1.6/intro/tutorial05
+
+Dec 15 - Finished Javascript tutorial on codeacademy.com
+
+Dec 10 - Started learning the basics of JavaScript. Started and Finished https://docs.djangoproject.com/en/1.6/intro/tutorial04 (Forms and Generic Views)
 
 Dec 9 - Bug fixes in Tutorial 3 and Started creating Architecture of Django diagram.
 
