@@ -10,7 +10,7 @@ https://github.com/satishgoda/learningdjango/wiki/Blog
 
 # Status
 
-Dec 18: Started reading https://docs.djangoproject.com/en/1.6/intro/tutorial06
+Dec 18: Started and finished with https://docs.djangoproject.com/en/1.6/intro/tutorial06
 
 Dec 17: Started and finished https://docs.djangoproject.com/en/1.6/intro/tutorial05
 
